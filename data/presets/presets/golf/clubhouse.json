@@ -1,0 +1,14 @@
+
+{
+    "geometry": [
+        "area"
+    ],
+    "tags": {
+        "golf": "clubhouse"
+    },
+    "addTags": [
+        "golf": "clubhouse",
+        "building": "yes"
+    ],
+    "name": "Clubhouse"
+    }
