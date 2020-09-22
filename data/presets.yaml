@@ -765,6 +765,11 @@ en:
           anticlockwise: Counterclockwise
           # direction=clockwise
           clockwise: Clockwise
+      direction_point:
+        # direction=*
+        label: Direction (Degrees Clockwise)
+        # direction_point field placeholder
+        placeholder: '45, 90, 180, 270'
       direction_vertex:
         # direction=*
         label: Direction Affected
@@ -2772,6 +2777,26 @@ en:
       valve:
         # valve=*
         label: Type
+      vehicles:
+        # 'bus=*, trolleybus=*, tram=*, train=*, subway=*, light_rail=*, monorail=*, ferry=*'
+        label: Vehicles
+        options:
+          # bus=yes
+          bus: Bus
+          # ferry=yes
+          ferry: Ferry
+          # light_rail=yes
+          light_rail: Light Rail
+          # monorail=yes
+          monorail: Monorail
+          # subway=yes
+          subway: Subway
+          # train=yes
+          train: Train
+          # tram=yes
+          tram: Tram
+          # trolleybus=yes
+          trolleybus: Trolleybus
       vending:
         # vending=*
         label: Types of Goods
@@ -3178,6 +3203,11 @@ en:
         name: Biergarten
         # 'terms: beer,bier,booze'
         terms: '<translate with synonyms or related terms for ''Biergarten'', separated by commas>'
+      amenity/binoculars:
+        # amenity=binoculars
+        name: Mounted Binoculars
+        # 'terms: observation viewer,optical ranger,spotting scope,sight,spyglass,telescope,tower viewer,viewfinder,viewing stand'
+        terms: '<translate with synonyms or related terms for ''Mounted Binoculars'', separated by commas>'
       amenity/boat_rental:
         # amenity=boat_rental
         name: Boat Rental
@@ -3198,7 +3228,7 @@ en:
       amenity/cafe/bubble_tea:
         # 'amenity=cafe, cuisine=bubble_tea'
         name: Bubble Tea Cafe
-        # 'terms: boba,bubble milk tea,pearl milk tea,taiwanese tea drink,tapioca'
+        # 'terms: boba,bubble milk tea,pearl milk tea,taiwanese tea drink,tapioca,pearl tea,boba drink'
         terms: '<translate with synonyms or related terms for ''Bubble Tea Cafe'', separated by commas>'
       amenity/cafe/coffee_shop:
         # 'amenity=cafe, cuisine=coffee_shop'
@@ -8329,7 +8359,7 @@ en:
       shop/music:
         # shop=music
         name: Music Store
-        # 'terms: tape casettes,CDs,compact discs,vinyl records'
+        # 'terms: tape cassettes,CDs,compact discs,vinyl records,CD store,casette,casette store'
         terms: '<translate with synonyms or related terms for ''Music Store'', separated by commas>'
       shop/musical_instrument:
         # shop=musical_instrument
@@ -8484,7 +8514,7 @@ en:
       shop/supermarket:
         # shop=supermarket
         name: Supermarket
-        # 'terms: grocery,store,shop'
+        # 'terms: grocery,store,shop,grocery store,market,food market'
         terms: '<translate with synonyms or related terms for ''Supermarket'', separated by commas>'
       shop/supermarket/organic:
         # 'shop=supermarket, organic=only'
@@ -8739,6 +8769,11 @@ en:
         # 'tourism=information, information=board'
         name: Information Board
         terms: '<translate with synonyms or related terms for ''Information Board'', separated by commas>'
+      tourism/information/board/welcome_sign:
+        # 'tourism=information, information=board, board_type=welcome_sign'
+        name: Welcome Sign
+        # 'terms: new location'
+        terms: '<translate with synonyms or related terms for ''Welcome Sign'', separated by commas>'
       tourism/information/guidepost:
         # 'tourism=information, information=guidepost'
         name: Guidepost
@@ -8879,26 +8914,11 @@ en:
         name: City Limit Sign
         # 'terms: town,village,hamlet,boundary,edge,border,road,highway'
         terms: '<translate with synonyms or related terms for ''City Limit Sign'', separated by commas>'
-      traffic_sign/city_limit_vertex:
-        # traffic_sign=city_limit
-        name: City Limit Sign
-        # 'terms: town,village,hamlet,boundary,edge,border,road,highway'
-        terms: '<translate with synonyms or related terms for ''City Limit Sign'', separated by commas>'
       traffic_sign/maxspeed:
         # traffic_sign=maxspeed
         name: Speed Limit Sign
         # 'terms: max speed,maximum speed,road,highway'
         terms: '<translate with synonyms or related terms for ''Speed Limit Sign'', separated by commas>'
-      traffic_sign/maxspeed_vertex:
-        # traffic_sign=maxspeed
-        name: Speed Limit Sign
-        # 'terms: max speed,maximum speed,road,highway'
-        terms: '<translate with synonyms or related terms for ''Speed Limit Sign'', separated by commas>'
-      traffic_sign_vertex:
-        # traffic_sign=*
-        name: Traffic Sign
-        # 'terms: road,highway'
-        terms: '<translate with synonyms or related terms for ''Traffic Sign'', separated by commas>'
       type/boundary:
         # type=boundary
         name: Boundary

@@ -85,7 +85,8 @@ export function uiPresetList(context) {
         function keypress() {
             // enter
             var value = search.property('value');
-            if (d3_event.keyCode === 13 && value.length) {
+            if (d3_event.keyCode === 13 && // ↩ Return
+                value.length) {
                 list.selectAll('.preset-list-item:first-child')
                     .each(function(d) { d.choose.call(this); });
             }
@@ -117,6 +118,9 @@ export function uiPresetList(context) {
             .append('div')
             .attr('class', 'search-header');
 
+        searchWrap
+            .call(svgIcon('#iD-icon-search', 'pre-text'));
+
         var search = searchWrap
             .append('input')
             .attr('class', 'preset-search-input')
@@ -127,11 +131,14 @@ export function uiPresetList(context) {
             .on('keypress', keypress)
             .on('input', inputevent);
 
-        searchWrap
-            .call(svgIcon('#iD-icon-search', 'pre-text'));
-
         if (_autofocus) {
             search.node().focus();
+
+            // Safari 14 doesn't always like to focus immediately,
+            // so try again on the next pass
+            setTimeout(function() {
+                search.node().focus();
+            }, 0);
         }
 
         var listWrap = selection

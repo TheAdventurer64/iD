@@ -116,6 +116,10 @@
     "replace": {"shop": "kiosk"}
   },
   {
+    "old": {"amenity": "notice_board"},
+    "replace": {"advertising": "board"}
+  },
+  {
     "old": {"amenity": "nursery"},
     "replace": {"amenity": "kindergarten"}
   },
@@ -222,6 +226,10 @@
   {
     "old": {"barrier": "wood_fence"},
     "replace": {"barrier": "fence", "fence_type": "wood"}
+  },
+  {
+    "old": {"amenity": "bench", "capacity": "*"},
+    "replace": {"amenity": "bench", "seats": "$1"}
   },
   {
     "old": {"bicycle:oneway": "*"},

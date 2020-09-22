@@ -24,12 +24,6 @@ en:
       changes_context: "({changes}) {base} – {context}"
     labeled_and_more: "{labeled} and {count} more"
   modes:
-    add_feature:
-      title: Add a feature
-      description: "Search for features to add to the map."
-      key: Tab
-      result: "{count} result"
-      results: "{count} results"
     add_area:
       title: Area
       description: "Add parks, buildings, lakes or other areas to the map."
@@ -83,22 +77,22 @@ en:
     copy:
       title: Copy
       description:
-        single: Set this feature for pasting.
-        multiple: Set these features for pasting.
+        one: Set this feature for pasting.
+        other: Set these features for pasting.
       annotation:
-        single: Copied a feature.
-        multiple: "Copied {n} features."
+        one: Copied a feature.
+        other: "Copied {n} features."
       too_large:
-        single: This can't be copied because not enough of it is currently visible.
-        multiple: These can't be copied because not enough of them are currently visible.
+        one: This can't be copied because not enough of it is currently visible.
+        other: These can't be copied because not enough of them are currently visible.
     paste:
       title: Paste
       description:
-        single: "Add a duplicate {feature} here."
-        multiple: "Add {n} duplicate features here."
+        one: "Add a duplicate {feature} here."
+        other: "Add {n} duplicate features here."
       annotation:
-        single: Pasted a feature.
-        multiple: "Pasted {n} features."
+        one: Pasted a feature.
+        other: "Pasted {n} features."
       nothing_copied: No features have been copied.
     circularize:
       title: Circularize
@@ -200,7 +194,9 @@ en:
         line: Deleted a line.
         area: Deleted an area.
         relation: Deleted a relation.
-        multiple: "Deleted {n} features."
+        feature:
+          one: "Deleted a feature."
+          other: "Deleted {n} features."
       too_large:
         single: This feature can't be deleted because not enough of it is currently visible.
         multiple: These features can't be deleted because not enough of them are currently visible.
@@ -227,12 +223,14 @@ en:
         address: Remove all non-address tags.
       annotation:
         building:
-          single: Downgraded a feature to a basic building.
-          multiple: "Downgraded {n} features to basic buildings."
+          one: Downgraded a feature to a basic building.
+          other: "Downgraded {n} features to basic buildings."
         address:
-          single: Downgraded a feature to an address.
-          multiple: "Downgraded {n} features to addresses."
-        multiple: "Downgraded {n} features."
+          one: Downgraded a feature to an address.
+          other: "Downgraded {n} features to addresses."
+        generic:
+          one: "Downgraded a feature."
+          other: "Downgraded {n} features."
       has_wikidata_tag:
         single: This feature can't be downgraded because it has a Wikidata tag.
         multiple: These features can't be downgraded because some have Wikidata tags.
@@ -295,7 +293,9 @@ en:
       title: Merge
       description: Merge these features.
       key: C
-      annotation: "Merged {n} features."
+      annotation:
+        one: "Merged a feature."
+        other: "Merged {n} features."
       not_eligible: These features can't be merged.
       not_adjacent: These features can't be merged because their endpoints aren't connected.
       restriction: "These features can't be merged because it would damage a \"{relation}\" relation."
@@ -400,6 +400,28 @@ en:
         line: Reversed a line.
         lines: Reversed multiple lines.
         features: Reversed multiple features.
+    scale:
+      annotation:
+        down:
+          feature:
+            one: Scaled down a feature.
+            other: "Scaled down {n} features."
+        up:
+          feature:
+            one: Scaled up a feature.
+            other: "Scaled up {n} features."
+      too_small:
+        single: This feature can't be scaled down because it would become too small.
+        multiple: These features can't be scaled down because they would become too small.
+      too_large:
+        single: This feature can't be scaled because not enough of it is currently visible.
+        multiple: These features can't be scaled because not enough of them are currently visible.
+      connected_to_hidden:
+        single: This feature can't be scaled because it is connected to a hidden feature.
+        multiple: These features can't be scaled because some are connected to hidden features.
+      not_downloaded:
+        single: This feature can't be scaled because parts of it have not yet been downloaded.
+        multiple: These features can't be scaled because parts of them have not yet been downloaded.
     split:
       title: Split
       description:
@@ -410,7 +432,9 @@ en:
       annotation:
         line: Split a line.
         area: Split an area boundary.
-        multiple: "Split {n} lines/area boundaries."
+        feature:
+          one: "Split a feature."
+          other: "Split {n} features."
       not_eligible: Lines can't be split at their beginning or end.
       multiple_ways: There are too many lines here to split.
       connected_to_hidden: This can't be split because it is connected to a hidden feature.
@@ -434,8 +458,8 @@ en:
         feature:
           multiple: Extract points from these features.
       annotation:
-        single: Extracted a point.
-        multiple: "Extracted {n} points."
+        one: Extracted a point.
+        other: "Extracted {n} points."
       too_large:
         single: A point can't be extracted because not enough of this feature is visible.
         multiple: Points can't be extracted because not enough of these features are visible.
@@ -500,8 +524,9 @@ en:
     key: '`'
     tooltip: Toggle the sidebar.
   feature_info:
-    hidden_warning: "{count} hidden features"
-    hidden_details: "These features are currently hidden: {details}"
+    hidden_warning:
+      one: "{count} hidden feature"
+      other: "{count} hidden features"
   osm_api_status:
     message:
       error: Unable to reach the OpenStreetMap API. Your edits are safe locally. Check your network connection.
@@ -516,7 +541,7 @@ en:
     request_review: "I would like someone to review my edits."
     save: Upload
     cancel: Cancel
-    changes: "Changes ({count})"
+    changes: Changes
     download_changes: Download osmChange file
     errors: Errors
     warnings: Warnings
@@ -531,9 +556,14 @@ en:
     google_warning_link: https://www.openstreetmap.org/copyright
   contributors:
     list: "Edits by {users}"
-    truncated_list: "Edits by {users} and {count} others"
+    truncated_list:
+      one: "Edits by {users} and {count} other"
+      other: "Edits by {users} and {count} others"
   info_panels:
     key: I
+    selected:
+      one: "{n} selected"
+      other: "{n} selected"
     background:
       key: B
       title: Background
@@ -551,7 +581,6 @@ en:
     history:
       key: H
       title: History
-      selected: "{n} selected"
       no_history: "No History (New Feature)"
       version: Version
       last_edit: Last Edit
@@ -571,7 +600,6 @@ en:
     measurement:
       key: M
       title: Measurement
-      selected: "{n} selected"
       geometry: Geometry
       closed_line: closed line
       closed_area: closed area
@@ -620,7 +648,9 @@ en:
     choose_relation: Choose a parent relation
     role: Role
     choose: Select feature type
-    results: "{n} results for {search}"
+    results:
+      one: "{n} result for {search}"
+      other: "{n} results for {search}"
     no_documentation_key: "There is no documentation available."
     edit_reference: "edit/translate"
     wiki_reference: View documentation
@@ -1496,11 +1526,11 @@ en:
   issues:
     title: Issues
     key: I
-    list_title: "Issues ({count})"
+    list_title: "Issues"
     errors:
-      list_title: "Errors ({count})"
+      list_title: "Errors"
     warnings:
-      list_title: "Warnings ({count})"
+      list_title: "Warnings"
     rules:
       title: Rules
     user_resolved_issues: Issues resolved by your edits
@@ -1596,10 +1626,9 @@ en:
       tip: "Find unroutable roads, paths, and ferry routes"
       routable:
         message:
-          multiple: "{count} routable features are connected only to each other."
+          one: "{highway} is disconnected from other roads and paths"
+          other: "{count} routable features are connected only to each other"
         reference: "All roads, paths, and ferry routes should connect to form a single routing network."
-      highway:
-        message: "{highway} is disconnected from other roads and paths"
     fixme_tag:
       message: '{feature} has a "Fix Me" request'
       reference: 'A "fixme" tag indicates that a mapper has requested help with a feature.'
@@ -2165,6 +2194,8 @@ en:
         move: "Move selected features"
         nudge: "Nudge selected features"
         nudge_more: "Nudge selected features by a lot"
+        scale: "Scale selected features"
+        scale_more: "Scale selected features by a lot"
         rotate: "Rotate selected features"
         orthogonalize: "Square corners of a line or area"
         straighten: "Straighten a line or points"

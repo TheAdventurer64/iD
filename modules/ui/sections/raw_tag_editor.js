@@ -25,8 +25,8 @@ export function uiSectionRawTagEditor(id, context) {
     var taginfo = services.taginfo;
     var dispatch = d3_dispatch('change');
     var availableViews = [
-        { id: 'text', icon: '#fas-i-cursor' },
-        { id: 'list', icon: '#fas-th-list' }
+        { id: 'list', icon: '#fas-th-list' },
+        { id: 'text', icon: '#fas-i-cursor' }
     ];
 
     var _tagView = (prefs('raw-tag-editor-view') || 'list');   // 'list, 'text'
@@ -204,7 +204,6 @@ export function uiSectionRawTagEditor(id, context) {
 
         innerWrap
             .append('button')
-            .attr('tabindex', -1)
             .attr('class', 'form-field-button remove')
             .attr('title', t('icons.remove'))
             .call(svgIcon('#iD-operation-delete'));
@@ -285,8 +284,11 @@ export function uiSectionRawTagEditor(id, context) {
         if (_tagView !== 'text') return;
 
         var selection = d3_select(this);
-        selection.style('height', null);
-        selection.style('height', selection.node().scrollHeight + 5 + 'px');
+        var matches = selection.node().value.match(/\n/g);
+        var lineCount = 2 + Number(matches && matches.length);
+        var lineHeight = 20;
+
+        selection.style('height', lineCount * lineHeight + 'px');
     }
 
     function stringify(s) {

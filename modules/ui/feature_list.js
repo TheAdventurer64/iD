@@ -41,6 +41,9 @@ export function uiFeatureList(context) {
             .append('div')
             .attr('class', 'search-header');
 
+        searchWrap
+            .call(svgIcon('#iD-icon-search', 'pre-text'));
+
         var search = searchWrap
             .append('input')
             .attr('placeholder', t('inspector.search'))
@@ -49,9 +52,6 @@ export function uiFeatureList(context) {
             .on('keypress', keypress)
             .on('keydown', keydown)
             .on('input', inputevent);
-
-        searchWrap
-            .call(svgIcon('#iD-icon-search', 'pre-text'));
 
         var listWrap = selection
             .append('div')
@@ -89,7 +89,9 @@ export function uiFeatureList(context) {
         function keypress() {
             var q = search.property('value'),
                 items = list.selectAll('.feature-list-item');
-            if (d3_event.keyCode === 13 && q.length && items.size()) {  // return
+            if (d3_event.keyCode === 13 && // ↩ Return
+                q.length &&
+                items.size()) {
                 click(items.datum());
             }
         }
@@ -122,19 +124,6 @@ export function uiFeatureList(context) {
 
             if (!q) return result;
 
-            var idMatch = q.match(/(?:^|\W)(node|way|relation|[nwr])\W?0*([1-9]\d*)(?:\W|$)/i);
-
-            if (idMatch) {
-                var elemType = idMatch[1].charAt(0);
-                var elemId = idMatch[2];
-                result.push({
-                    id: elemType + elemId,
-                    geometry: elemType === 'n' ? 'point' : elemType === 'w' ? 'line' : 'relation',
-                    type: elemType === 'n' ? t('inspector.node') : elemType === 'w' ? t('inspector.way') : t('inspector.relation'),
-                    name: elemId
-                });
-            }
-
             var locationMatch = sexagesimal.pair(q.toUpperCase()) || q.match(/^(-?\d+\.?\d*)\s+(-?\d+\.?\d*)$/);
 
             if (locationMatch) {
@@ -145,6 +134,20 @@ export function uiFeatureList(context) {
                     type: t('inspector.location'),
                     name: dmsCoordinatePair([loc[1], loc[0]]),
                     location: loc
+                });
+            }
+
+            // A location search takes priority over an ID search
+            var idMatch = !locationMatch && q.match(/(?:^|\W)(node|way|relation|[nwr])\W?0*([1-9]\d*)(?:\W|$)/i);
+
+            if (idMatch) {
+                var elemType = idMatch[1].charAt(0);
+                var elemId = idMatch[2];
+                result.push({
+                    id: elemType + elemId,
+                    geometry: elemType === 'n' ? 'point' : elemType === 'w' ? 'line' : 'relation',
+                    type: elemType === 'n' ? t('inspector.node') : elemType === 'w' ? t('inspector.way') : t('inspector.relation'),
+                    name: elemId
                 });
             }
 
